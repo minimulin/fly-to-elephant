@@ -14,7 +14,16 @@ class FlyToElephant
 {
     public static function magic($fly, $elephant)
     {
+        //Логгер в данном случае выводит сообщения в консоль
         $logger = new Echoer;
+
+        if (mb_strlen($fly) != mb_strlen($elephant)) {
+            $logger->log('Слова имеют разную длину');
+            return null;
+        }
+
+        //@todo: Добавить проверку на существование в словаре $fly и $elephant. Сейчас при их отсутствии решение не находится без дополнительных сообщений
+
         //Получаем из словаря все слова с заданной длиной
         $words = static::getWordsFromDictionary(mb_strlen($fly));
 
@@ -23,10 +32,13 @@ class FlyToElephant
         $begin = $graph->getLeafWithValue($fly);
         $end = $graph->getLeafWithValue($elephant);
 
-        //Запускаем алгоритм поиска кратчайшего пути
-        $chain = LeeAlgorithm::run($graph, $begin, $end, $logger);
-
-        return $chain;
+        if ($begin && $end) {
+            //Запускаем алгоритм поиска кратчайшего пути
+            $chain = LeeAlgorithm::run($graph, $begin, $end, $logger);
+            return $chain;
+        } else {
+            return null;
+        }
     }
 
     public function getWordsFromDictionary($length)

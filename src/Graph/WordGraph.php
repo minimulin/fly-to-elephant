@@ -91,7 +91,7 @@ class WordGraph implements GraphInterface
     protected function buildGraph(array $words)
     {
         if ($this->logger) {
-            $this->logger->log('Идет построение графа');
+            $this->logger->log('Идет заполнение графа');
         }
 
         foreach ($words as $word) {

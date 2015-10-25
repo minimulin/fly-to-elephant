@@ -1,0 +1,15 @@
+{
+    "name": "mrstiher/fly-to-elephant",
+    "authors": [
+        {
+            "name": "Arthur Heisenberg",
+            "email": "artur@heisenberg.su"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "FlyToElephant\\": "src/"
+        }
+    }
+}
